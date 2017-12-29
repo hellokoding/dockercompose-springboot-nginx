@@ -11,8 +11,8 @@
 - Java
 - Spring Boot
 - NGINX
-- MVN
+- Maven
 
 ## Run
-- docker-compose up
+- Run command `docker-compose up`
 - Access to http://localhost/
