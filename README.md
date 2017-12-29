@@ -1,9 +1,9 @@
 # Dockerize Spring Boot application
 
-## What'll you build
+## What you'll build
 - A simple Spring Boot application running behind NGINX and inside docker containers 
 
-## What'll you need
+## What you'll need
 - Docker CE
 
 ## Stack
