@@ -1,4 +1,4 @@
-# Dockerize Spring Boot application
+# [Dockerize Spring Boot application](https://hellokoding.com/docker-compose-with-spring-boot-nginx/)
 
 ## What you'll build
 - A simple Spring Boot application running behind NGINX and inside docker containers 
