@@ -1,4 +1,9 @@
 version: '3'
+networks:
+  dbnet:
+    external:
+      name: dbnet
+
 services:
   nginx:
    container_name: some-nginx
@@ -6,18 +11,42 @@ services:
    restart: always
    ports:
    - 80:80
-   - 443:443
+   links:
+    - app1:app1
+    - app2:app2
+    - app3:app3
    volumes:
    - ./nginx/conf.d:/etc/nginx/conf.d
-   depends_on:
-   - app
-
-  app:
+  app1:
     restart: always
     build: ./app
     working_dir: /app
     volumes:
       - ./app:/app
     expose:
-      - "8080"
+      - "8081"
+    networks:
+      - dbnet    
+    command: mvn clean spring-boot:run
+  app2:
+    restart: always
+    build: ./app
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    expose:
+      - "8082"
+    networks:
+      - dbnet
+    command: mvn clean spring-boot:run
+  app3:
+    restart: always
+    build: ./app
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    expose:
+      - "8083"
+    networks:
+      - dbnet
     command: mvn clean spring-boot:run
