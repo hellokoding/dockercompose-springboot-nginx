@@ -38,15 +38,15 @@ services:
     networks:
       - dbnet
     command: mvn clean spring-boot:run
-    nginx:
-      container_name: some-nginx
-      image: nginx:1.13
-      restart: always
-      ports:
-      - 80:80
-      links:
-       - app1:app1
-       - app2:app2
-       - app3:app3
-      volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
+  nginx:
+    container_name: some-nginx
+    image: nginx:1.13
+    restart: always
+    ports:
+    - 80:80
+    links:
+     - app1:app1
+     - app2:app2
+     - app3:app3
+    volumes:
+    - ./nginx/conf.d:/etc/nginx/conf.d
