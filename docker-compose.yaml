@@ -11,8 +11,8 @@ services:
     working_dir: /app
     volumes:
       - ./app:/app
-    expose:
-      - "8081"
+    ports:
+      - 8080:8081
     networks:
       - dbnet    
     command: mvn clean spring-boot:run
@@ -22,8 +22,8 @@ services:
     working_dir: /app
     volumes:
       - ./app:/app
-    expose:
-      - "8082"
+    ports:
+      - 8080:8082
     networks:
       - dbnet
     command: mvn clean spring-boot:run
@@ -33,21 +33,20 @@ services:
     working_dir: /app
     volumes:
       - ./app:/app
-    expose:
-      - "8083"
+    ports:
+      - 8080:8083
     networks:
       - dbnet
     command: mvn clean spring-boot:run
-  nginx:
-    container_name: some-nginx
-    image: nginx:1.13
-    restart: always
-    ports:
-    - 80:80
-    links:
-     - app1:app1
-     - app2:app2
-     - app3:app3
-    volumes:
-    - ./nginx/conf.d:/etc/nginx/conf.d
-   
+    nginx:
+      container_name: some-nginx
+      image: nginx:1.13
+      restart: always
+      ports:
+      - 80:80
+      links:
+       - app1:app1
+       - app2:app2
+       - app3:app3
+      volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
