@@ -15,7 +15,7 @@ services:
       - 8081:8081
     networks:
       - dbnet    
-    command: mvn clean spring-boot:run
+    command: mvn clean spring-boot:run -Drun.jvmArguments='-Dserver.port=8081'
   app2:
     restart: always
     build: ./app
@@ -26,7 +26,7 @@ services:
       - 8082:8082
     networks:
       - dbnet
-    command: mvn clean spring-boot:run
+    command: mvn clean spring-boot:run -Drun.jvmArguments='-Dserver.port=8082'
   app3:
     restart: always
     build: ./app
@@ -37,7 +37,7 @@ services:
       - 8083:8083
     networks:
       - dbnet
-    command: mvn clean spring-boot:run
+    command: mvn clean spring-boot:run -Drun.jvmArguments='-Dserver.port=8083'
   nginx:
     container_name: some-nginx
     image: nginx:1.13
