@@ -46,10 +46,10 @@ services:
     image: nginx:1.13
     restart: always
     ports:
-    - 80:80
-    links:
-     - app1:app1
-     - app2:app2
-     - app3:app3
+      - 80:80
+    depends_on: 
+      - "app1"
+      - "app2"
+      - "app3"
     volumes:
-    - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/conf.d:/etc/nginx/conf.d
