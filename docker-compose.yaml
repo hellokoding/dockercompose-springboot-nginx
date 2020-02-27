@@ -6,6 +6,7 @@ networks:
 
 services:
   app1:
+    hostname: app1
     restart: always
     build: ./app
     working_dir: /app
@@ -17,6 +18,7 @@ services:
       - dbnet    
     command: mvn clean spring-boot:run -Drun.jvmArguments='-Dserver.port=8081'
   app2:
+    hostname: app2
     restart: always
     build: ./app
     working_dir: /app
@@ -28,6 +30,7 @@ services:
       - dbnet
     command: mvn clean spring-boot:run -Drun.jvmArguments='-Dserver.port=8082'
   app3:
+    hostname: app3
     restart: always
     build: ./app
     working_dir: /app
