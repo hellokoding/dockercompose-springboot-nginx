@@ -1,23 +1,45 @@
 version: '3'
 services:
   nginx:
-   container_name: some-nginx
-   image: nginx:1.13
-   restart: always
-   ports:
-   - 80:80
-   - 443:443
-   volumes:
-   - ./nginx/conf.d:/etc/nginx/conf.d
-   depends_on:
-   - app
-
-  app:
+    build:
+      dockerfile: ./nginx/nginx.dockerfile
+      context: .
+    container_name: my-nginx
+    image: armandoss/my-nginx
+    restart: always
+    ports:
+      - 80:80
+    depends_on: 
+      - "app1"
+      - "app2"
+      - "app3"  
+  app1:
+    hostname: app1
     restart: always
     build: ./app
     working_dir: /app
     volumes:
       - ./app:/app
-    expose:
-      - "8080"
-    command: mvn clean spring-boot:run
+    ports:
+      - 8081:8081
+    command: mvn clean spring-boot:run -Drun.jvmArguments='-Dserver.port=8081'
+  app2:
+    hostname: app2
+    restart: always
+    build: ./app
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    ports:
+      - 8082:8082
+    command: mvn clean spring-boot:run -Drun.jvmArguments='-Dserver.port=8082'
+  app3:
+    hostname: app3
+    restart: always
+    build: ./app
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    ports:
+      - 8083:8083
+    command: mvn clean spring-boot:run -Drun.jvmArguments='-Dserver.port=8083'
