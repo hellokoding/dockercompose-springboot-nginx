@@ -5,6 +5,20 @@ networks:
       name: dbnet
 
 services:
+  nginx:
+    container_name: some-nginx
+    image: nginx:1.13
+    restart: always
+    ports:
+      - 80:80
+    networks:
+      - dbnet    
+    depends_on: 
+      - "app1"
+      - "app2"
+      - "app3"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
   app1:
     hostname: app1
     restart: always
@@ -41,15 +55,3 @@ services:
     networks:
       - dbnet
     command: mvn clean spring-boot:run -Drun.jvmArguments='-Dserver.port=8083'
-  nginx:
-    container_name: some-nginx
-    image: nginx:1.13
-    restart: always
-    ports:
-      - 80:80
-    depends_on: 
-      - "app1"
-      - "app2"
-      - "app3"
-    volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
