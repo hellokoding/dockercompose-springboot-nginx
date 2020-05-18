@@ -12,6 +12,7 @@
 - Spring Boot
 - NGINX
 - Maven
+- Swager API Spec's
 
 ## Run
 - Run command `docker-compose up`
