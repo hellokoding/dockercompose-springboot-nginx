@@ -17,3 +17,7 @@
 ## Run
 - Run command `docker-compose up`
 - Access to http://localhost/
+
+## Swagger2 UI
+- Access here http://localhost/swagger-ui.html
+
